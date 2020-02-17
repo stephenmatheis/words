@@ -107,6 +107,7 @@ export default function Component_SideBar(param) {
         `,
         adjacentElement:adjacentElement,
         position: 'afterbegin',
+        register: false,
         events: [
             {
                 selector: '.nav',

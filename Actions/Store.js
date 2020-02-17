@@ -49,7 +49,11 @@ export default function Store() {
             events.splice(index, 1);
         },
         empty() {
+            console.log(components);
+            components.forEach(component => component.remove());
             components = [];
+
+            events.forEach(event => event.remove());
             events = [];
         }
     }

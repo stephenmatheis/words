@@ -12,7 +12,7 @@ import View_Projects from '../Views/Projects/Projects.js'
 import View_About from '../Views/About/About.js'
 
 export default function Router(route) {
-    // Remove components form DOM and store
+    // Remove components from DOM and store
     app.store.empty();
 
     // Set browswer history state

@@ -24,6 +24,7 @@ export default function Component_MainContainer(param) {
         `,
         adjacentElement: adjacentElement,
         position: 'beforeend',
+        register: false,
         events: []
     });
 }

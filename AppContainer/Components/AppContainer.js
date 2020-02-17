@@ -87,6 +87,7 @@ export default function Component_AppContainer(param) {
         `,
         adjacentElement: adjacentElement,
         position: 'afterbegin',
+        register: false,
         events: []
     });
 }

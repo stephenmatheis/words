@@ -7,6 +7,7 @@ export default function Component(param) {
         style,
         adjacentElement,
         position,
+        register,
         events,
     } = param;
 
@@ -21,7 +22,7 @@ export default function Component(param) {
             return document.querySelector(`#${component.id}`);
         },
         remove() {
-            app.store.remove(component);
+            component.get().remove();
         },
         empty() {
             const children = document.querySelector(`#${component.id}`).querySelectorAll('*');
@@ -53,12 +54,14 @@ export default function Component(param) {
         
         element.insertAdjacentHTML(position, html);
 
-        register();
+        addToStore();
         addEventListeners(events);
     }
 
-    function register() {
-        app.store.addComponent(component);
+    function addToStore() {
+        if (register !== false) {
+            app.store.addComponent(component);
+        }
     }
 
     function addEventListeners(events) {
