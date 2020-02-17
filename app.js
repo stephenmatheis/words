@@ -21,7 +21,7 @@ async function main() {
         data: data,
         name: 'new',
         defaultColor: 'darkslategray;',
-        primaryColor: 'mediumpurple',
+        primaryColor: 'black',
         secondaryColor: 'whitesmoke',
         highlightColor: '#f6b73c',
         store: Store(),

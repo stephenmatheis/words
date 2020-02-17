@@ -68,7 +68,7 @@ export default function Component(param) {
         if (events) {
             events.forEach(item => {
                 if (typeof item.selector === 'string') {
-                    document.querySelectorAll(item.selector).forEach((node) => {
+                    document.querySelectorAll(`#${id} ${item.selector}`).forEach((node) => {
                         node.addEventListener(item.event, item.listener);
                     });
                 } else {

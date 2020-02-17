@@ -16,7 +16,18 @@ export default function Component_AppContainer(param) {
         `,
         style: /*css*/ `
             .app-container {
+                flex: 1;
                 display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            /* */
+
+            #app {
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
             }
 
             *, html {
@@ -29,7 +40,7 @@ export default function Component_AppContainer(param) {
                 padding: 0px;
                 margin: 0px;
                 box-sizing: border-box;
-                background: ${app.secondaryColor};
+                background: ${app.primaryColor};
             }
             
             body::-webkit-scrollbar { 
@@ -86,7 +97,7 @@ export default function Component_AppContainer(param) {
             }
         `,
         adjacentElement: adjacentElement,
-        position: 'afterbegin',
+        position: 'beforeend',
         register: false,
         events: []
     });

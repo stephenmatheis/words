@@ -15,11 +15,9 @@ export default function Component_SideBar(param) {
         id,
         html: /*html*/ `
             <div id='${id}' class="sidebar">
-                <div class="nav-container">
-                    <span class="sidebar-route ${(route === "") ? "sidebar-selected" : ""} home" id="Home">
-                        <svg class="icon"><use href="../../Icons/symbol-defs.svg#icon-home"></use></svg>
-                    </span>
-                </div>
+                <!--<span class="nav ${(route === "") ? "nav-selected" : ""}" id="Home">
+                    <svg class="icon"><use href="./../Icons/symbol-defs.svg#icon-home"></use></svg>
+                </span>-->
                 <!-- Projects -->
                 <span class="nav ${(route === "Projects") ? "nav-selected" : ""}" id="Projects">
                     <svg class="icon"><use href="./../Icons/symbol-defs.svg#icon-terminal"></use></svg>
@@ -29,20 +27,18 @@ export default function Component_SideBar(param) {
                     <svg class="icon"><use href="./../Icons/symbol-defs.svg#icon-barcode"></use></svg>
                 </span>
                 <div class="settings-container">
-                    <span class="sidebar-route ${(route === "Settings") ? "sidebar-selected" : ""} settings" id="Settings">
-                        <svg class="icon"><use href="../../Icons/symbol-defs.svg#icon-cog"></use></svg>
+                    <span class="nav ${(route === "Settings") ? "nav-selected" : ""}" id="Settings">
+                        <svg class="icon"><use href="./../Icons/symbol-defs.svg#icon-cog "></use></svg>
                     </span>
                 </div>
             </div>
         `,
         style: /*css*/ `
             .sidebar {
-                display: flex;
+                display: inline-flex;
                 flex-direction: column;
                 justify-content: flex-start;
-                height: 100vh;
                 background: ${app.primaryColor};
-                box-shadow: inset 0px 0px 6px 0 rgba(32, 33, 36, .28);
             }
 
             /* Nav Container */
@@ -53,47 +49,21 @@ export default function Component_SideBar(param) {
                 justify-content: center;
             }
 
-            .sidebar .nav,
-            .sidebar-route {
+            .sidebar .nav {
                 cursor: pointer;
-                text-align: left;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 font-size: 1.5em;
                 font-weight: 400;
-            }
-
-            .home {
-                margin: 10px 5px;
-                padding: 10px 15px;
-                border-radius: 12px;
-                box-shadow: -5px 3px 15px 0 rgba(0, 0, 0, .3);
-            }
-
-            .sidebar .sidebar-selected {
-                margin: 10px 5px;
-                padding: 10px 15px;
-                border-radius: 12px;
-                box-shadow: 
-                    inset 2px 2px 15px 0 rgb(0, 0, 0, .3),  /* Dark */
-                    inset 0px 0px 26px 0 rgb(255, 255, 255, 0.2) /* Light */
-            }
-
-            .sidebar .nav,
-            .settings {
-                padding: 20px;
-                color: ${app.secondaryColor};
+                padding: 15px;
+                margin: 5px;
+                border-right: solid 3px ${app.primaryColor};
+                border-radius: 4px 0px 0px 4px;
             }
 
             .sidebar .nav-selected {
-                background: ${app.secondaryColor};
-                box-shadow: -12px 0px 6px 0 rgba(0, 0, 0, .3);
-                border-radius: 4px 0px 0px 4px;
-                transform: translateX(6px);
-            }
-
-            .sidebar .nav-selected .icon {
-                fill: ${app.primaryColor};
-                stroke: ${app.primaryColor};
-                background: ${app.secondaryColor};
+                border-right: solid 3px ${app.secondaryColor};
             }
 
             /* Settings */
@@ -106,7 +76,7 @@ export default function Component_SideBar(param) {
             }
         `,
         adjacentElement:adjacentElement,
-        position: 'afterbegin',
+        position: 'beforeend',
         register: false,
         events: [
             {
@@ -125,11 +95,7 @@ export default function Component_SideBar(param) {
     function routeToView() {
         removeSelectNav();
 
-        if (this.classList.contains('nav')) {
-            this.classList.add('nav-selected');
-        } else if (this.classList.contains('sidebar-route')) {
-            this.classList.add('sidebar-selected');
-        }
+        this.classList.add('nav-selected');
 
         const newRoute = (this.id === 'Home') ? '' : this.id;
 
@@ -137,10 +103,6 @@ export default function Component_SideBar(param) {
     }
 
     function removeSelectNav() {
-        document.querySelectorAll('.sidebar-route').forEach((button) => {
-            button.classList.remove('sidebar-selected');
-        });
-        
         document.querySelectorAll('.nav').forEach((nav) => {
             nav.classList.remove('nav-selected');
         });

@@ -16,9 +16,10 @@ export default function Component_MainContainer(param) {
         `,
         style: /*css*/ `
             .main-container {
-                padding: 20px 50px;
+                padding: 50px;
                 flex: 1;
-                height: 100vh;
+                border-radius: 20px 0px 0px 0px;
+                background: ${app.secondaryColor};
                 overflow: overlay;
             }
         `,
