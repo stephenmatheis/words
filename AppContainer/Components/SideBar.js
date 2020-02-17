@@ -132,7 +132,7 @@ export default function Component_SideBar(param) {
 
         const newRoute = (this.id === 'Home') ? '' : this.id;
 
-        // Router(newRoute);
+        Router(newRoute);
     }
 
     function removeSelectNav() {

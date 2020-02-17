@@ -2,7 +2,7 @@
 
 import Component_Card from '../../Components/Card.js';
 
-export default function Home(param) {
+export default function View_Home(param) {
     const card = Component_Card({
         title: 'Stephen Matheis',
         innerContent: /*html*/ `

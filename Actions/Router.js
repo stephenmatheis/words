@@ -8,6 +8,8 @@ import History from './History.js'
 
 /* Views */
 import View_Home from '../Views/Home/Home.js'
+import View_Projects from '../Views/Projects/Projects.js'
+import View_About from '../Views/About/About.js'
 
 export default function Router(route) {
     // Remove components form DOM and store
@@ -22,9 +24,14 @@ export default function Router(route) {
     // Choose view to render
     switch (route) {
         case '':
-            addTitle('Home Page Title');
-
             View_Home();
+            break;
+        case 'Projects':
+            View_Projects();
+            break;
+        case 'About':
+            View_About();
+            break;
         default:
             break;
     }
