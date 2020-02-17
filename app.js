@@ -56,5 +56,5 @@ async function main() {
     });
 
     // Run route on page load
-    // Router(route); 
+    Router(route); 
 }

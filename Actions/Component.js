@@ -49,8 +49,6 @@ export default function Component(param) {
     }
 
     function insertHTML() {
-        console.log(adjacentElement);
-
         const element = adjacentElement.get() || app.store.getMainContainer().get();
         
         element.insertAdjacentHTML(position, html);

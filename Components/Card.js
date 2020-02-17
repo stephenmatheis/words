@@ -5,7 +5,9 @@ import Component from '../Actions/Component.js'
 
 export default function Component_Card(param) {
     const {
-        adjacentElement
+        adjacentElement,
+        title,
+        innerContent
     } = param;
 
     const id = app.setComponentId();
@@ -14,9 +16,10 @@ export default function Component_Card(param) {
         id,
         html: /*html*/ `
             <div id='${id}' class='card'>
-                <!-- <div class='card-title'>
-                    <div class='card-title-name'>${param.name}</div>
-                </div> -->
+                <div class='card-title-container'>
+                    <div class='card-title-text'>${title}</div>
+                </div>
+                    <div class='inner-content'>${innerContent}</div>
             </div>
         `,
         style: /*css*/ `
@@ -31,7 +34,7 @@ export default function Component_Card(param) {
                 box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);
             }
 
-            .card-title {
+            .card-title-container {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
@@ -42,9 +45,13 @@ export default function Component_Card(param) {
                 background: ${app.primaryColor};
             }
             
-            .card-title-name {
+            .card-title-text {
                 font-size: 1.5em;
                 color: ${app.secondaryColor};
+            }
+
+            .inner-content {
+                padding: 10px;
             }
         `,
         adjacentElement: adjacentElement,

@@ -31,7 +31,8 @@ export default function Router(route) {
 
     function addTitle(displayText) {
         const title = Title({
-            title: displayText
+            title: displayText,
+            adjacentElement: app.store.getMainContainer()
         });
 
         title.add();

@@ -20,6 +20,14 @@ export default function Component_SideBar(param) {
                         <svg class="icon"><use href="../../Icons/symbol-defs.svg#icon-home"></use></svg>
                     </span>
                 </div>
+                <!-- Projects -->
+                <span class="nav ${(route === "Projects") ? "nav-selected" : ""}" id="Projects">
+                    <svg class="icon"><use href="./../Icons/symbol-defs.svg#icon-terminal"></use></svg>
+                </span>
+                <!-- About -->
+                <span class="nav ${(route === "About") ? "nav-selected" : ""}" id="About">
+                    <svg class="icon"><use href="./../Icons/symbol-defs.svg#icon-barcode"></use></svg>
+                </span>
                 <div class="settings-container">
                     <span class="sidebar-route ${(route === "Settings") ? "sidebar-selected" : ""} settings" id="Settings">
                         <svg class="icon"><use href="../../Icons/symbol-defs.svg#icon-cog"></use></svg>
