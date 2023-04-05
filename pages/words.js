@@ -31,6 +31,19 @@ const letters = [
     'Y',
     'Z'
 ];
+const shapes = [
+    '■',
+    '◼',
+    '▪',
+    '▫',
+    '●',
+    '◦',
+    '▴',
+    '▵',
+    '◆',
+    '◇',
+    '◇',
+];
 const links = [
     'StephenMatheis',
     'About',
@@ -50,7 +63,16 @@ export async function getServerSideProps(context) {
                 { length: columns * rows },
                 () => letters[getRandomIntInclusive(min, max)]
                 // () => '■'
+                // () => '◼'
                 // () => '▪'
+                // () => '▫'
+                // () => '●'
+                // () => '◦'
+                // () => '▴'
+                // () => '▵'
+                // () => '◆'
+                // () => '◇'
+                // () => '◇'
             )
             // cells: randomUnicodeArray(columns * rows)
         }

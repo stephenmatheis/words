@@ -18,6 +18,7 @@
     }
 
     .cell {
+        user-select: none;
         cursor: default;
         font-size: max(3vmin, 16px);
         display: grid;
