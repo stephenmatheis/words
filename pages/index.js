@@ -3,7 +3,7 @@ import Head from 'next/head';
 import classNames from 'classnames';
 import Header from '@/components/header/header';
 import Main from '@/components/main/main';
-import styles from '../styles/resume.module.scss';
+import styles from '@/styles/resume.module.scss';
 import Footer from '@/components/footer';
 
 export default function Home() {
