@@ -1,1 +1,1 @@
-export { default } from './link-ctr';
+export { default } from "./link-ctr";

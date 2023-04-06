@@ -1,11 +1,10 @@
-@use '../../styles/utilities.module.scss' as utilities;
-@use '../../styles/dark.theme.module.scss' as theme;
+@use "../../styles/utilities.module.scss" as utilities;
+@use "../../styles/dark.theme.module.scss" as theme;
 
 .link-ctr {
     height: utilities.$line-height;
 
     &.hide-background {
-
         .link-text {
             border-bottom-color: transparent;
 
@@ -38,7 +37,7 @@
         }
 
         &::before {
-            content: '';
+            content: "";
             pointer-events: none;
             position: absolute;
             top: 6px;
@@ -46,10 +45,7 @@
             width: 100%;
             height: 100%;
             background-color: theme.$link-20;
-            transition:
-                background-color 450ms ease-in-out,
-                top 250ms ease-in-out,
-                left 250ms ease-in-out;
+            transition: background-color 450ms ease-in-out, top 250ms ease-in-out, left 250ms ease-in-out;
         }
     }
 }
