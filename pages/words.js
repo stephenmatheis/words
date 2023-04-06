@@ -1,44 +1,44 @@
-import { useRef } from "react";
-import Link from "next/link";
-import styles from "@/styles/words.module.scss";
-import classNames from "classnames";
+import { useRef } from 'react';
+import Link from 'next/link';
+import styles from '@/styles/words.module.scss';
+import classNames from 'classnames';
 
 const letters = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
 ];
-const shapes = ["■", "◼", "▪", "▫", "●", "◦", "▴", "▵", "◆", "◇", "◇"];
-const basic = ["⏹", "□", "●", "◯", "▲", "△", "◆", "◇", "+", "✕", "*", "=", "-"];
-const links = ["Stephen Matheis", "About", "Blog", "Resume", "Contact"];
+const shapes = ['■', '◼', '▪', '▫', '●', '◦', '▴', '▵', '◆', '◇', '◇'];
+const basic = ['⏹', '□', '●', '◯', '▲', '△', '◆', '◇', '+', '✕', '*', '=', '-'];
+const links = ['Stephen Matheis', 'About', 'Blog', 'Resume', 'Contact'];
 const columns = 20;
 const rows = 20;
 const min = 0;
 const max = 25;
-const shape = "◦";
+const shape = '◦';
 
 export async function getServerSideProps(context) {
     return {
@@ -69,7 +69,7 @@ export default function Words({ cells }) {
     const ref = useRef();
 
     return (
-        <div ref={ref} id={styles["words"]}>
+        <div ref={ref} id={styles['words']}>
             {cells.map((letter, index) => {
                 // console.log(index, isRow(columns, 2, index, 1));
                 // console.log(index, isRow(columns, 4, index, 2));
@@ -100,7 +100,7 @@ export default function Words({ cells }) {
                 //         </Link>
                 //     );
                 // }
-                if (isRow({ columns, row: 2, index, word: links[1], align: "right" })) {
+                if (isRow({ columns, row: 2, index, word: links[1], align: 'right' })) {
                     return <Letter key={index} columns={columns} row={2} index={index} word={links[1]} />;
                 }
 
@@ -135,16 +135,16 @@ export default function Words({ cells }) {
                 if (index >= columns * (rows - 1) && index < columns * (rows - 1) + links[0].length) {
                     const char = links[0][index - columns * (rows - 1)].toUpperCase();
 
-                    if (char === " ") {
+                    if (char === ' ') {
                         return (
-                            <div key={index} className={classNames(styles["cell"])}>
+                            <div key={index} className={classNames(styles['cell'])}>
                                 {letter}
                             </div>
                         );
                     }
 
                     return (
-                        <Link key={index} className={classNames(styles["cell"], styles["link"])} href="/">
+                        <Link key={index} className={classNames(styles['cell'], styles['link'])} href="/">
                             {char}
                         </Link>
                     );
@@ -152,7 +152,7 @@ export default function Words({ cells }) {
 
                 // Normal Cell
                 return (
-                    <div key={index} className={classNames(styles["cell"])}>
+                    <div key={index} className={classNames(styles['cell'])}>
                         {letter}
                     </div>
                 );
@@ -171,7 +171,7 @@ function isRow(columns, row, index, word) {
 
 function Letter({ columns, row, index, word }) {
     return (
-        <Link key={index} className={classNames(styles["cell"], styles["link"])} href={`/${word.toLowerCase()}`}>
+        <Link key={index} className={classNames(styles['cell'], styles['link'])} href={`/${word.toLowerCase()}`}>
             {word[index - (columns * row + (columns - 1)) + (word.length - 1)].toUpperCase()}
         </Link>
     );

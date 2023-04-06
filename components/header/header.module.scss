@@ -1,5 +1,5 @@
-@use "../../styles/utilities.module.scss" as utilities;
-@use "../../styles/dark.theme.module.scss" as theme;
+@use '../../styles/utilities.module.scss' as utilities;
+@use '../../styles/dark.theme.module.scss' as theme;
 
 .header {
     display: flex;
@@ -51,7 +51,7 @@
             transition: border-bottom-color 450ms ease-in-out;
 
             &::before {
-                content: "";
+                content: '';
                 pointer-events: none;
                 position: absolute;
                 top: 6px;

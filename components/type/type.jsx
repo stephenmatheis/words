@@ -1,13 +1,13 @@
-import { forwardRef, useEffect, useState } from "react";
-import classNames from "classnames";
-import styles from "./type.module.scss";
+import { forwardRef, useEffect, useState } from 'react';
+import classNames from 'classnames';
+import styles from './type.module.scss';
 
 const Type = forwardRef(function Type2(
     { content, className, wrapperClass, startAtChar = 0, speed = 0, delay = 0, blink, cursor },
     ref
 ) {
     const [delayed, setDelayed] = useState(delay > 0 ? true : false);
-    const [prefix, setPrefix] = useState("");
+    const [prefix, setPrefix] = useState('');
     const [suffix, setSuffix] = useState(content);
     const [index, setIndex] = useState(startAtChar > 0 ? startAtChar - 1 : startAtChar);
 
@@ -37,7 +37,7 @@ const Type = forwardRef(function Type2(
 
     return (
         <>
-            <span ref={ref} className={classNames(styles["type"], wrapperClass)}>
+            <span ref={ref} className={classNames(styles['type'], wrapperClass)}>
                 {index === content.length ? (
                     <span ref={ref} className={className}>
                         {content}
@@ -46,11 +46,11 @@ const Type = forwardRef(function Type2(
                     <>
                         <span
                             // ref={ref}
-                            className={classNames(styles["prefix"], className)}
+                            className={classNames(styles['prefix'], className)}
                         >
                             {prefix}
                         </span>
-                        <span ref={ref} className={classNames(styles["suffix"], className)}>
+                        <span ref={ref} className={classNames(styles['suffix'], className)}>
                             {suffix}
                         </span>
                     </>

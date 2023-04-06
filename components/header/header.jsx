@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import classNames from "classnames";
-import Type from "@/components/type/type";
-import styles from "./header.module.scss";
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import classNames from 'classnames';
+import Type from '@/components/type/type';
+import styles from './header.module.scss';
 
 export default function Header({ loading, setLoading, speed, type, showLinkBackground }) {
     // State
@@ -12,11 +12,11 @@ export default function Header({ loading, setLoading, speed, type, showLinkBackg
     const titleMod = 12.5;
 
     // Name and Title
-    const firstName = "Stephen";
-    const lastName = "Matheis";
-    const frontEnd = "Front-end";
-    const software = "Software";
-    const engineer = "Engineer";
+    const firstName = 'Stephen';
+    const lastName = 'Matheis';
+    const frontEnd = 'Front-end';
+    const software = 'Software';
+    const engineer = 'Engineer';
 
     // Container refs
     const overlay = useRef();
@@ -79,7 +79,7 @@ export default function Header({ loading, setLoading, speed, type, showLinkBackg
             const toNamePos = to.current.getBoundingClientRect();
 
             fromName.style.height = `${height}px`;
-            fromName.style.position = "absolute";
+            fromName.style.position = 'absolute';
             fromName.style.top = `${fromNamePos.top}px`;
             fromName.style.left = `${fromNamePos.left}px`;
 
@@ -96,53 +96,53 @@ export default function Header({ loading, setLoading, speed, type, showLinkBackg
                         color: toColor,
                         top: `${toNamePos.top}px`,
                         left: `${toNamePos.left}px`,
-                        fontSize: "12px",
-                        marginBottom: "0px",
+                        fontSize: '12px',
+                        marginBottom: '0px',
                     },
                 ],
                 {
                     duration: duration || 0,
-                    easing: "ease-in-out",
-                    fill: "forwards",
+                    easing: 'ease-in-out',
+                    fill: 'forwards',
                 }
             );
 
             const isNameFinished = await animateName.finished;
 
-            if (isNameFinished.playState === "finished") {
-                return "done";
+            if (isNameFinished.playState === 'finished') {
+                return 'done';
             }
         }
     }, [loading, setLoading, speed, type]);
 
     return (
         <>
-            <header className={styles["header"]}>
+            <header className={styles['header']}>
                 <Link href="/" aria-label="Stephen Matheis' personal website">
                     <div
-                        className={classNames(styles["profile"], {
-                            [styles["loading"]]: loading,
-                            [styles["link-background"]]: showLinkBackground,
+                        className={classNames(styles['profile'], {
+                            [styles['loading']]: loading,
+                            [styles['link-background']]: showLinkBackground,
                         })}
                     >
-                        <span ref={toFirstName} className={styles["name"]}>
+                        <span ref={toFirstName} className={styles['name']}>
                             {firstName}
                         </span>
-                        <span className={styles["name"]}> </span>
-                        <span ref={toLastName} className={styles["name"]}>
+                        <span className={styles['name']}> </span>
+                        <span ref={toLastName} className={styles['name']}>
                             {lastName}
                         </span>
                         <span> </span>
-                        <span className={styles["nowrap"]}>
-                            <span ref={toFrontEnd} className={styles["title"]}>
+                        <span className={styles['nowrap']}>
+                            <span ref={toFrontEnd} className={styles['title']}>
                                 {frontEnd}
                             </span>
-                            <span className={styles["title"]}> </span>
-                            <span ref={toSoftware} className={styles["title"]}>
+                            <span className={styles['title']}> </span>
+                            <span ref={toSoftware} className={styles['title']}>
                                 {software}
                             </span>
-                            <span className={styles["title"]}> </span>
-                            <span ref={toEngineer} className={styles["title"]}>
+                            <span className={styles['title']}> </span>
+                            <span ref={toEngineer} className={styles['title']}>
                                 {engineer}
                             </span>
                         </span>
@@ -152,11 +152,11 @@ export default function Header({ loading, setLoading, speed, type, showLinkBackg
             {loading && (
                 <div
                     ref={overlay}
-                    className={classNames(styles["loading-overlay"], {
-                        [styles["background-color"]]: transitionBackgroundColor,
+                    className={classNames(styles['loading-overlay'], {
+                        [styles['background-color']]: transitionBackgroundColor,
                     })}
                 >
-                    <div ref={ctr} className={styles["ctr"]}>
+                    <div ref={ctr} className={styles['ctr']}>
                         {type ? (
                             <>
                                 {/* Name */}
@@ -164,16 +164,16 @@ export default function Header({ loading, setLoading, speed, type, showLinkBackg
                                     ref={fromFirstName}
                                     content={firstName}
                                     speed={(speed * 2) / 3}
-                                    className={styles["name"]}
-                                    wrapperClass={styles["line-wrapper"]}
+                                    className={styles['name']}
+                                    wrapperClass={styles['line-wrapper']}
                                 />
                                 <Type
                                     ref={fromLastName}
                                     content={lastName}
                                     speed={(speed * 2) / 3}
                                     delay={delayAfter(firstName, speed)}
-                                    className={styles["name"]}
-                                    wrapperClass={styles["line-wrapper"]}
+                                    className={styles['name']}
+                                    wrapperClass={styles['line-wrapper']}
                                 />
 
                                 {/* Title */}
@@ -182,41 +182,41 @@ export default function Header({ loading, setLoading, speed, type, showLinkBackg
                                     content={frontEnd}
                                     speed={(speed * 2) / 3}
                                     delay={delayAfter(firstName + lastName, speed, titleMod)}
-                                    className={styles["title"]}
-                                    wrapperClass={styles["line-wrapper"]}
+                                    className={styles['title']}
+                                    wrapperClass={styles['line-wrapper']}
                                 />
                                 <Type
                                     ref={fromSoftware}
                                     content={software}
                                     speed={(speed * 2) / 3}
                                     delay={delayAfter(firstName + lastName + frontEnd, speed, titleMod)}
-                                    className={styles["title"]}
-                                    wrapperClass={styles["line-wrapper"]}
+                                    className={styles['title']}
+                                    wrapperClass={styles['line-wrapper']}
                                 />
                                 <Type
                                     ref={fromEngineer}
                                     content={engineer}
                                     speed={(speed * 2) / 3}
                                     delay={delayAfter(firstName + lastName + frontEnd + software, speed, titleMod)}
-                                    className={styles["title"]}
-                                    wrapperClass={styles["line-wrapper"]}
+                                    className={styles['title']}
+                                    wrapperClass={styles['line-wrapper']}
                                 />
                             </>
                         ) : (
                             <>
-                                <span ref={fromFirstName} className={styles["name"]}>
+                                <span ref={fromFirstName} className={styles['name']}>
                                     {firstName}
                                 </span>
-                                <span ref={fromLastName} className={styles["name"]}>
+                                <span ref={fromLastName} className={styles['name']}>
                                     {lastName}
                                 </span>
-                                <span ref={fromFrontEnd} className={styles["title"]}>
+                                <span ref={fromFrontEnd} className={styles['title']}>
                                     {frontEnd}
                                 </span>
-                                <span ref={fromSoftware} className={styles["title"]}>
+                                <span ref={fromSoftware} className={styles['title']}>
                                     {software}
                                 </span>
-                                <span ref={fromEngineer} className={styles["title"]}>
+                                <span ref={fromEngineer} className={styles['title']}>
                                     {engineer}
                                 </span>
                             </>
