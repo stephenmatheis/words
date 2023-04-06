@@ -1,0 +1,30 @@
+@use '../../styles/dark.theme.module.scss' as theme;
+
+.heading {
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    height: 44px;
+
+    button {
+        cursor: pointer;
+        width: 44px;
+        color: theme.$link;
+        font-weight: 400;
+        font-size: 1em;
+        translate: calc(-44px * 1.25);
+
+        &,
+        &:focus,
+        &.active {
+            outline: none;
+            border: none;
+            background-color: transparent;
+        }
+    }
+
+    span {
+        translate: -44px;
+        user-select: none;
+    }
+}
