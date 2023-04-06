@@ -22,7 +22,7 @@
         font-size: max(3vmin, 16px);
         display: grid;
         place-items: center;
-        color: theme.$muted;
+        color: theme.$light;
 
         &.link {
             cursor: pointer;

@@ -33,32 +33,35 @@ const letters = [
 ];
 const shapes = ['■', '◼', '▪', '▫', '●', '◦', '▴', '▵', '◆', '◇', '◇'];
 const basic = ['⏹', '□', '●', '◯', '▲', '△', '◆', '◇', '+', '✕', '*', '=', '-'];
-const links = ['Stephen Matheis', 'About', 'Blog', 'Resume', 'Contact'];
+const binary = [0, 1];
+const links = ['Stephen Matheis', 'Blog', 'Resume', 'Projects'];
 const columns = 20;
 const rows = 20;
 const min = 0;
 const max = 25;
 const shape = '◦';
+// const shape = '0';
 
 export async function getServerSideProps(context) {
     return {
         props: {
             cells: Array.from(
                 { length: columns * rows },
-                // () => letters[getRandomIntInclusive(0, letters.length - 1)]
-                // () => basic[getRandomIntInclusive(0, basic.length - 1)]
-                // () => shapes[getRandomIntInclusive(0, shapes.length - 1)]
-                // () => '■'
-                // () => '◼'
-                // () => '▪'
-                // () => '▫'
-                // () => '●'
-                () => shape
-                // () => '▴'
-                // () => '▵'
-                // () => '◆'
-                // () => '◇'
-                // () => '◇'
+                // () => setChar(letters),
+                // () => setChar(basic),
+                // () => setChar(shapes),
+                // () => setChar(binary)
+                () => shape,
+                // () => '■',
+                // () => '◼',
+                // () => '▪',
+                // () => '▫',
+                // () => '●',
+                // () => '▴',
+                // () => '▵',
+                // () => '◆',
+                // () => '◇',
+                // () => '◇',
             ),
             // cells: randomUnicodeArray(columns * rows)
         },
@@ -71,82 +74,30 @@ export default function Words({ cells }) {
     return (
         <div ref={ref} id={styles['words']}>
             {cells.map((letter, index) => {
-                // console.log(index, isRow(columns, 2, index, 1));
-                // console.log(index, isRow(columns, 4, index, 2));
-                // console.log(index, isRow(columns, 6, index, 3));
+                for (let i = 1; i < links.length; i++) {
+                    let row = i * 2 - 1;
 
-                // Second Row
-                // const row = 2;
+                    console.log(row);
 
-                // if (
-                //     index > ((columns * row) + (columns - 1)) - links[1].length &&
-                //     index <= (columns * row) + (columns - 1)
-                // ) {
-                //     // console.log(
-                //     //     index,
-                //     //     letter,
-                //     //     (columns * row) + (columns - 1),
-                //     //     index - ((columns * row) + (columns - 1)) + (links[1].length - 1),
-                //     //     links[1][index - ((columns * row) + (columns - 1)) + (links[1].length - 1)]
-                //     // );
-
-                //     return (
-                //         <Link
-                //             key={index}
-                //             className={classNames(styles['cell'], styles['link'])}
-                //             href='/'
-                //         >
-                //             {links[1][index - ((columns * row) + (columns - 1)) + (links[1].length - 1)].toUpperCase()}
-                //         </Link>
-                //     );
-                // }
-                if (isRow({ columns, row: 2, index, word: links[1], align: 'right' })) {
-                    return <Letter key={index} columns={columns} row={2} index={index} word={links[1]} />;
-                }
-
-                // Fourth Row
-                if (isRow(columns, 4, index, links[2])) {
-                    return <Letter key={index} columns={columns} row={4} index={index} word={links[2]} />;
-                }
-
-                // Sixth Row
-                if (isRow(columns, 6, index, links[3])) {
-                    return <Letter key={index} columns={columns} row={6} index={index} word={links[3]} />;
-                }
-
-                // Last row
-                // if (isRow(columns, columns.length, index, links[0])) {
-                //     const char = links[0][index - columns * (rows - 1)].toUpperCase();
-
-                //     return (
-                //         <Link
-                //             key={index}
-                //             className={classNames(styles['cell'], {
-                //                 [styles['link']]: char != ' '
-                //             })}
-                //             href='/'
-                //         >
-                //             {char}
-                //         </Link>
-                //     );
-                // }
-
-                // Last row
-                if (index >= columns * (rows - 1) && index < columns * (rows - 1) + links[0].length) {
-                    const char = links[0][index - columns * (rows - 1)].toUpperCase();
-
-                    if (char === ' ') {
+                    if (isRow({ columns, row, index, word: links[i], align: 'right' })) {
+                        console.log(index);
                         return (
-                            <div key={index} className={classNames(styles['cell'])}>
-                                {letter}
-                            </div>
+                            <Letter
+                                key={index}
+                                columns={columns}
+                                row={row}
+                                index={index}
+                                word={links[i]}
+                                align="right"
+                            />
                         );
                     }
+                }
 
+                // Last row
+                if (isRow({ columns, row: rows - 1, index, word: links[0], align: 'left' })) {
                     return (
-                        <Link key={index} className={classNames(styles['cell'], styles['link'])} href="/">
-                            {char}
-                        </Link>
+                        <Letter key={index} columns={columns} row={rows - 1} index={index} word={links[0]} />
                     );
                 }
 
@@ -161,20 +112,49 @@ export default function Words({ cells }) {
     );
 }
 
-function isRow(columns, row, index, word) {
-    if (index > columns * row + (columns - 1) - word.length && index <= columns * row + (columns - 1)) {
-        return true;
-    } else {
-        false;
+function isRow({ columns, row, index, word, align }) {
+    if (align === 'right') {
+        if (index > columns * (row - 1) + (columns - 1) - word.length && index <= columns * (row - 1) + (columns - 1)) {
+            return true;
+        } else {
+            return false;
+        }
     }
+
+    if (align === 'left') {
+        if (index >= columns * row && index < columns * row + word.length) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    return false;
 }
 
-function Letter({ columns, row, index, word }) {
+function Letter({ columns, row, index, word, align, href }) {
+    let char =
+        align === 'right'
+            ? word[index - (columns * (row - 1) + (columns - 1)) + (word.length - 1)].toUpperCase()
+            : word[index - columns * (row)].toUpperCase();
+
+    if (char === ' ') {
+        return (
+            <div key={index} className={classNames(styles['cell'])}>
+                {shape}
+            </div>
+        );
+    }
+
     return (
-        <Link key={index} className={classNames(styles['cell'], styles['link'])} href={`/${word.toLowerCase()}`}>
-            {word[index - (columns * row + (columns - 1)) + (word.length - 1)].toUpperCase()}
+        <Link key={index} className={classNames(styles['cell'], styles['link'])} href={href || `/${word.toLowerCase()}`}>
+            {char}
         </Link>
     );
+}
+
+function setChar(set) {
+    return set[getRandomIntInclusive(0, set.length - 1)];
 }
 
 function getRandomIntInclusive(min, max) {
