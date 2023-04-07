@@ -47,11 +47,11 @@ export async function getServerSideProps(context) {
         props: {
             cells: Array.from(
                 { length: columns * rows },
-                // () => setChar(letters),
+                () => setChar(letters)
                 // () => setChar(basic),
                 // () => setChar(shapes),
                 // () => setChar(binary)
-                () => shape
+                // () => shape
                 // () => '■',
                 // () => '◼',
                 // () => '▪',
@@ -142,7 +142,7 @@ function Letter({ columns, row, index, word, align, href }) {
     if (char === ' ') {
         return (
             <div key={index} className={classNames(styles['cell'])}>
-                {shape}
+                {/* {shape} */}A
             </div>
         );
     }

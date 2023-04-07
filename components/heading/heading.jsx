@@ -4,9 +4,10 @@ import styles from './heading.module.scss';
 
 export default function Heading({ children }) {
     return (
-        <h1 className={styles['heading']}>
-            <button onClick={() => Router.back()}>〈</button>
+        <div className={styles['heading']}>
+            {/* <button onClick={() => Router.back()}>〈</button> */}
+            <button onClick={() => Router.back()}>〈 Back</button>
             <span>{children}</span>
-        </h1>
+        </div>
     );
 }

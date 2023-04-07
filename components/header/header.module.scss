@@ -8,6 +8,63 @@
 
     a {
         width: fit-content;
+        position: relative;
+        line-height: utilities.$line-height;
+    }
+
+    button {
+        cursor: pointer;
+        font-size: utilities.$font-size;
+        font-family: var(--mono);
+        color: theme.$link;
+        border-bottom: solid 1px;
+        border-bottom-color: transparent;
+        position: absolute;
+        translate: -8ch;
+        padding: 0px;
+        line-height: 16px;
+        // transition: border-bottom-color 450ms ease-in-out;
+
+        &.loading {
+            opacity: 0;
+        }
+
+        // &.link-background {
+        //     border-bottom-color: theme.$link;
+
+        //     &::before {
+        //         background-color: theme.$link-20;
+        //     }
+        // }
+
+        &:hover {
+            &::before {
+                top: 0px;
+                left: 0px;
+            }
+        }
+
+        // &::before {
+        //     content: '';
+        //     pointer-events: none;
+        //     position: absolute;
+        //     top: 6px;
+        //     left: 3px;
+        //     width: 100%;
+        //     height: 100%;
+        //     background-color: transparent;
+        //     transition: background-color 450ms ease-in-out, top 250ms ease-in-out, left 250ms ease-in-out;
+        // }
+
+        &,
+        &:focus,
+        &.active {
+            outline: none;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            background-color: transparent;
+        }
     }
 
     .profile {

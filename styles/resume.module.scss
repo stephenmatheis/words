@@ -1,5 +1,7 @@
 #resume {
-    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    --mono: Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+    font-family: var(--mono);
     width: 8.5in;
     padding: 0.5in;
     display: flex;

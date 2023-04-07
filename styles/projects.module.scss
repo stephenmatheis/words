@@ -1,7 +1,9 @@
 @use './dark.theme.module.scss' as theme;
 
 #projects {
-    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    --mono: Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+    font-family: var(--mono);
     width: 8.5in;
     height: 100svh;
     padding: 0.5in;

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import Router from 'next/router';
 import Link from 'next/link';
 import classNames from 'classnames';
 import Type from '@/components/type/type';
@@ -119,6 +120,15 @@ export default function Header({ loading, setLoading, speed, type, showLinkBackg
         <>
             <header className={styles['header']}>
                 <Link href="/" aria-label="Stephen Matheis' personal website">
+                    {/* <button
+                        className={classNames({
+                            [styles['loading']]: loading,
+                            [styles['link-background']]: showLinkBackground,
+                        })}
+                        onClick={() => Router.back()}
+                    >
+                        〈 Back
+                    </button> */}
                     <div
                         className={classNames(styles['profile'], {
                             [styles['loading']]: loading,
