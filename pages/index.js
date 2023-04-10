@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import styles from '@/styles/words.module.scss';
 import classNames from 'classnames';
@@ -32,6 +32,7 @@ const letters = [
     'Z',
 ];
 const shapes = ['■', '◼', '▪', '▫', '●', '◦', '▴', '▵', '◆', '◇', '◇'];
+const four = ['□', '◯', '△', '◇'];
 const basic = ['⏹', '□', '●', '◯', '▲', '△', '◆', '◇', '+', '✕', '*', '=', '-'];
 const binary = [0, 1];
 const links = ['Stephen Matheis', 'Blog', 'Resume', 'Projects'];
@@ -45,13 +46,14 @@ const shape = '◦';
 export async function getServerSideProps(context) {
     return {
         props: {
-            cells: Array.from(
+            letters: Array.from(
                 { length: columns * rows },
-                () => setChar(letters)
+                // () => setChar(four)
+                // () => setChar(letters)
                 // () => setChar(basic),
                 // () => setChar(shapes),
                 // () => setChar(binary)
-                // () => shape
+                () => shape
                 // () => '■',
                 // () => '◼',
                 // () => '▪',
@@ -68,8 +70,29 @@ export async function getServerSideProps(context) {
     };
 }
 
-export default function Words({ cells }) {
+export default function Words({ letters }) {
     const ref = useRef();
+    const [cells, setCells] = useState(letters);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setCells((prev) => {
+                console.log(prev);
+
+                const newRow = Array.from({ length: columns }, () => setChar(letters));
+                const removed = prev.slice(0, columns * (rows - 1));
+
+                console.log(newRow);
+                console.log(removed);
+
+                const newCells = newRow.concat(removed);
+
+                console.log('New Cells:', newCells);
+
+                return newCells;
+            });
+        }, 3000);
+    }, [letters]);
 
     return (
         <div ref={ref} id={styles['words']}>
@@ -78,10 +101,7 @@ export default function Words({ cells }) {
                 for (let i = 1; i < links.length; i++) {
                     let row = i * 2 - 1;
 
-                    console.log(row);
-
                     if (isRow({ columns, row, index, word: links[i], align: 'right' })) {
-                        console.log(index);
                         return (
                             <Letter
                                 key={index}
